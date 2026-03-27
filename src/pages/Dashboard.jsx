@@ -3,13 +3,18 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
 import Sidebar from "../components/Sidebar";
+import AccountsPanel from "../components/AccountsPanel";
 import GeneralPanel from "../components/GeneralPanel";
+import NotificationsPanel from "../components/NotificationsPanel";
+import PrivacyPanel from "../components/PrivacyPanel";
+import InternetPanel from "../components/InternetPanel";
 import BatteryPanel from "../components/BatteryPanel";
+import LanguagePanel from "../components/LanguagePanel";
+import VolumePanel from "../components/VolumePanel";
 import Toast from "../components/Toast";
 
-// ✅ IMPORT IMAGES (FINAL FIX)
+// 🔥 IMPORT IMAGE (IMPORTANT)
 import userImg from "../assets/user.png";
-import bg from "../assets/bg.png";
 
 export default function Dashboard({ setIsAuth }) {
 
@@ -20,13 +25,11 @@ export default function Dashboard({ setIsAuth }) {
 
   const navigate = useNavigate();
 
-  // 🔓 Logout
   const handleLogout = () => {
     setIsAuth(false);
     navigate("/login");
   };
 
-  // 🔔 Toast
   const showMessage = (msg) => {
     setToastMsg(msg);
     setShowToast(true);
@@ -44,25 +47,13 @@ export default function Dashboard({ setIsAuth }) {
   }, [theme]);
 
   return (
+    <div className={`app-layout ${theme}`}>
 
-    // 🔥 BACKGROUND APPLIED HERE
-    <div
-      className={`app-layout ${theme}`}
-      style={{
-        backgroundImage: `url(${bg})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        minHeight: "100vh"
-      }}
-    >
-
-      {/* SIDEBAR */}
       <Sidebar active={active} setActive={setActive} />
 
       <div className="dashboard">
 
-        {/* 🔝 TOP BAR */}
+        {/* TOP BAR */}
         <div className="top-bar">
 
           {/* THEME BUTTON */}
@@ -77,12 +68,12 @@ export default function Dashboard({ setIsAuth }) {
             {theme === "dark" ? "🌙 Dark" : "☀️ Light"}
           </button>
 
-          {/* ✅ USER IMAGE WORKING */}
+          {/* 🔥 FIXED IMAGE */}
           <img src={userImg} alt="avatar" className="avatar-img" />
 
           {/* LOGOUT */}
           <button className="logout-btn" onClick={handleLogout}>
-            🔙 Logout
+            🚪 Logout
           </button>
 
         </div>
@@ -108,6 +99,42 @@ export default function Dashboard({ setIsAuth }) {
           {active === "Battery" && (
             <motion.div key="battery" className="card-grid">
               <BatteryPanel showMessage={showMessage} />
+            </motion.div>
+          )}
+
+          {active === "Internet" && (
+            <motion.div key="internet" className="card-grid">
+              <InternetPanel showMessage={showMessage} />
+            </motion.div>
+          )}
+
+          {active === "Notifications" && (
+            <motion.div key="notifications" className="card-grid">
+              <NotificationsPanel showMessage={showMessage} />
+            </motion.div>
+          )}
+
+          {active === "Privacy" && (
+            <motion.div key="privacy" className="card-grid">
+              <PrivacyPanel showMessage={showMessage} />
+            </motion.div>
+          )}
+
+          {active === "Accounts" && (
+            <motion.div key="accounts" className="card-grid">
+              <AccountsPanel showMessage={showMessage} />
+            </motion.div>
+          )}
+
+          {active === "Language" && (
+            <motion.div key="language" className="card-grid">
+              <LanguagePanel showMessage={showMessage} />
+            </motion.div>
+          )}
+
+          {active === "Volume" && (
+            <motion.div key="volume" className="card-grid">
+              <VolumePanel showMessage={showMessage} />
             </motion.div>
           )}
 
