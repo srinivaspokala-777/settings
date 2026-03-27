@@ -69,7 +69,11 @@ export default function Dashboard({ setIsAuth }) {
           </button>
 
           {/* AVATAR */}
-          <img src="/user.png" alt="avatar" className="avatar-img" />
+          <img 
+  src={`${import.meta.env.BASE_URL}user.png`} 
+  alt="avatar" 
+  className="avatar-img" 
+/>
 
           {/* 🔥 LOGOUT BUTTON */}
           <button className="logout-btn" onClick={handleLogout}>
