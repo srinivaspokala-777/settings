@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://github.com/srinivaspokala-777/settings.git",
+  "homepage": "https://srinivaspokala-777.github.io/settings",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
