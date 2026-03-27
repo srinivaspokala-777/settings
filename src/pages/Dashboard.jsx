@@ -13,9 +13,6 @@ import LanguagePanel from "../components/LanguagePanel";
 import VolumePanel from "../components/VolumePanel";
 import Toast from "../components/Toast";
 
-// 🔥 IMPORT IMAGE (IMPORTANT)
-import userImg from "../assets/user.png";
-
 export default function Dashboard({ setIsAuth }) {
 
   const [active, setActive] = useState("General");
@@ -25,18 +22,20 @@ export default function Dashboard({ setIsAuth }) {
 
   const navigate = useNavigate();
 
+  // 🔓 Logout
   const handleLogout = () => {
     setIsAuth(false);
     navigate("/login");
   };
 
+  // 🔔 Toast
   const showMessage = (msg) => {
     setToastMsg(msg);
     setShowToast(true);
     setTimeout(() => setShowToast(false), 2000);
   };
 
-  // 💾 Theme Save
+  // 💾 Save Theme
   useEffect(() => {
     const saved = localStorage.getItem("theme");
     if (saved) setTheme(saved);
@@ -49,11 +48,12 @@ export default function Dashboard({ setIsAuth }) {
   return (
     <div className={`app-layout ${theme}`}>
 
+      {/* SIDEBAR */}
       <Sidebar active={active} setActive={setActive} />
 
       <div className="dashboard">
 
-        {/* TOP BAR */}
+        {/* 🔝 TOP BAR */}
         <div className="top-bar">
 
           {/* THEME BUTTON */}
@@ -68,10 +68,10 @@ export default function Dashboard({ setIsAuth }) {
             {theme === "dark" ? "🌙 Dark" : "☀️ Light"}
           </button>
 
-          {/* 🔥 FIXED IMAGE */}
-          <img src={userImg} alt="avatar" className="avatar-img" />
+          {/* AVATAR */}
+          <img src="/user.png" alt="avatar" className="avatar-img" />
 
-          {/* LOGOUT */}
+          {/* 🔥 LOGOUT BUTTON */}
           <button className="logout-btn" onClick={handleLogout}>
             🚪 Logout
           </button>
@@ -140,7 +140,7 @@ export default function Dashboard({ setIsAuth }) {
 
         </AnimatePresence>
 
-        {/* TOAST */}
+        {/* 🔔 TOAST */}
         <Toast message={toastMsg} show={showToast} />
 
       </div>
