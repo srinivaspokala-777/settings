@@ -105,7 +105,7 @@ export default function Login({ setIsAuth }) {
           >
             <img
               src="eye.png"
-              alt="eye"
+              alt="👁️"
               className={`eye-img ${showPassword ? "active" : ""}`}
             />
           </button>
@@ -127,7 +127,7 @@ export default function Login({ setIsAuth }) {
               className="captcha-refresh"
               onClick={generateCaptcha}
             >
-              <img src="refresh.png" alt="refresh" />
+              <img src="refresh.png" alt="🔄️" />
             </button>
 
           </div>
